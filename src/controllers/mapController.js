@@ -28,7 +28,7 @@ class MapController {
       map: this._map,
       container: domRef.current,
       center: [-77.091, 38.8816],
-      zoom: 12
+      zoom: 3//12
     });
 
     this._mapview.when(
@@ -56,6 +56,7 @@ class MapController {
     const mapLayers = config.layers.map(l => {
       return layerFactory(l);
     });
+    console.log(mapLayers);
     this._map.addMany(mapLayers);
   }
 

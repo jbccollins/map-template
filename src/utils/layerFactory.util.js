@@ -12,7 +12,7 @@ import WebMap from 'esri/WebMap';
 
 export default (layer) => {
     let esriLayer = null;
-
+    console.log('>>> LAYER TYPE', layer)
     switch (layer.type) {
         case 'CSVLayer':
             esriLayer = new CSVLayer(layer.options);
