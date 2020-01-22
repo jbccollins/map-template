@@ -6,14 +6,7 @@ import './header.scss';
 const Header = () => {
   const isFetchingTrains = useSelector(state => state.mapview.trains.fetching)
 
-  useEffect(() => {
-    // if (trains !== null) {
-    //   mapController._map.add(trains)
-    // }
-    // return () => {
-    //   mapController._map.remove(trains);
-    // }
-  }, [isFetchingTrains])
+  useEffect(() => {}, [isFetchingTrains])
 
   return (
     <div className="header-container">

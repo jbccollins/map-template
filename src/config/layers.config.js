@@ -1,13 +1,3 @@
-export const TrainsLayerTemplate = {
-  type: 'GraphicsLayer',
-  options: {
-    id: 'metro_trains',
-    label: 'Metro Trains',
-    visible: true,
-    graphics: []
-  }
-}
-
 export const layers = [
   {
     type: 'FeatureLayer',
@@ -19,5 +9,13 @@ export const layers = [
       visible: true
     }
   },
-  TrainsLayerTemplate
+  {
+    type: 'GraphicsLayer',
+    options: {
+      id: 'metro_trains',
+      label: 'Metro Trains',
+      visible: true,
+      graphics: []
+    }
+  }
 ];
