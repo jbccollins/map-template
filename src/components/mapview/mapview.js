@@ -3,11 +3,14 @@ import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { mapController } from '../../controllers/mapController';
+import trainGeojsonToGraphics from '../../utils/trainGeojsonToGraphicsConverter.util';
 import './mapview.scss';
 
 const MapView = () => {
   const mapError = useSelector(state => state.mapview.error.error);
-  const trains = useSelector(state => state.mapview.trains.trains)
+  const trains = useSelector(state => state.mapview.trains.trains);
+  const visibleLines = useSelector(state => state.mapview.visibleLines);
+
   const mapviewEl = useRef(null);
 
   useEffect(() => {
@@ -20,9 +23,13 @@ const MapView = () => {
       if (currentTrainsLayer !== null) {
         mapController._map.remove(currentTrainsLayer);
       }
-      mapController._map.add(trains)
+      let trainsToRender = trains;
+      if (visibleLines !== "All") {
+        trainsToRender = trains.filter(({properties: {TRACKLINE}}) => TRACKLINE === visibleLines);
+      }
+      mapController._map.add(trainGeojsonToGraphics(trainsToRender))
     }
-  }, [trains])
+  }, [trains, visibleLines])
 
   return (
     <div className="mapview-container">

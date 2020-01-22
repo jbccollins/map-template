@@ -7,7 +7,7 @@ const TrainRefreshButton = () => {
   }
   return (
     <div className="TrainRefreshButton" onClick={() => handleClick()}>
-      Refresh Train Positions
+      Refresh Trains 
     </div>
   );
 };

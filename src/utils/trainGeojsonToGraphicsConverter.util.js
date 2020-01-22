@@ -5,6 +5,7 @@ import layerFactory from 'utils/layerFactory.util';
 const markerSymbol = {
   type: "simple-marker",
   color: "red",
+  size: '10px',
   outline: {
     color: "white",//[255, 255, 255],
     width: 1

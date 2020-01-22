@@ -9,6 +9,8 @@ import {
   requestTrains,
   receiveTrains,
   handleTrainsError,
+  SET_VISIBLE_LINES,
+  TOGGLE_VISIBLE_LAYER,
 } from '../constants/actionTypes';
 
 const { dispatch } = store;
@@ -31,11 +33,16 @@ class MapController {
       });
   }
 
+  setVisibleLines = visibleLines => {
+    dispatch({type: SET_VISIBLE_LINES, payload: { visibleLines }});
+  }
+
   changeLayerVisibility = (id, value) => {
     const layer = this._map.findLayerById(id);
     if (layer) {
       layer.visible = value;
     }
+    dispatch({type: TOGGLE_VISIBLE_LAYER, id})
   };
 
   handleMapViewClick = e => {
@@ -72,7 +79,6 @@ class MapController {
       view: this._mapview
     });
     this._mapview.ui.add(legend, 'bottom-left');
-
     const mapLayers = config.layers.map(l => {
       return layerFactory(l);
     });

@@ -3,7 +3,7 @@ import {
   TRAINS_RECEIVED,
   TRAINS_REQUESTED,
 } from 'constants/actionTypes';
-import trainGeojsonToGraphics from '../../utils/trainGeojsonToGraphicsConverter.util';
+//import trainGeojsonToGraphics from '../../utils/trainGeojsonToGraphicsConverter.util';
 
 const initialTrainState = {
   trains: null,
@@ -21,7 +21,8 @@ export default (state = initialTrainState, action) => {
     case TRAINS_RECEIVED:
       return {
         ...state,
-        trains: trainGeojsonToGraphics(action.payload.trains),
+        //trains: trainGeojsonToGraphics(action.payload.trains),
+        trains: action.payload.trains,
         fetching: false,
         error: false
       };

@@ -12,6 +12,9 @@
   .LayerToggle {
     margin-bottom: 6px;
   }
+  .VisibleLinesFilter {
+    margin-top: 12px;
+  }
   .TrainRefreshButton {
     cursor: pointer;
     user-select: none;
@@ -20,8 +23,12 @@
     background: salmon;
     color: black;
     font-size: 14px;
-    //margin-top: 12px;
     border-radius: 4px;
     text-align: center;
+  }
+  .subcontrols {
+    border-left: 1px solid #2b2b2b;
+    padding-left: 6px;
+    margin-left: 6px;
   }
 }

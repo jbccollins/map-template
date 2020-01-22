@@ -22,3 +22,5 @@ export const handleTrainsError = error => ({
   type: TRAINS_ERRORED,
   payload: { error }
 });
+
+export const SET_VISIBLE_LINES = "controls/SET_VISIBLE_LINES";
