@@ -7,7 +7,7 @@ const markerSymbol = {
   color: "red",
   size: '12px',
   outline: {
-    color: "white",//[255, 255, 255],
+    color: "white",
     width: 1
   }
 };
@@ -16,7 +16,7 @@ export default geojson => {
   const graphics = geojson.map(({properties, geometry: {coordinates}}) => {
     return new Graphic({
       geometry: {
-        type: "point", // autocasts as new Point()
+        type: "point",
         longitude: coordinates[1],
         latitude: coordinates[0]
       },
