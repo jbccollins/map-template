@@ -7,10 +7,23 @@ import './mapview.scss';
 
 const MapView = () => {
   const mapError = useSelector(state => state.mapview.error.error);
+  const trains = useSelector(state => state.mapview.trains.trains)
   const mapviewEl = useRef(null);
+
   useEffect(() => {
     mapController.initializeMap(mapviewEl);
   }, []);
+  
+  useEffect(() => {
+    if (trains !== null) {
+      const currentTrainsLayer = mapController._map.findLayerById("metro_trains");
+      if (currentTrainsLayer !== null) {
+        mapController._map.remove(currentTrainsLayer);
+      }
+      mapController._map.add(trains)
+    }
+  }, [trains])
+
   return (
     <div className="mapview-container">
       {!mapError ? (

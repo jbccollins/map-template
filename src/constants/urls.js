@@ -1,0 +1,1 @@
+export const API_TRAIN_POSITIONS = 'https://www.dcmetromonitor.com/api/trainPositions';

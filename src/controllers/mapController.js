@@ -4,11 +4,31 @@ import Map from 'esri/Map';
 import MapView from 'esri/views/MapView';
 import Legend from 'esri/widgets/Legend';
 import layerFactory from 'utils/layerFactory.util';
+import { fetchTrains } from '../api/metro';
+import {
+  requestTrains,
+  receiveTrains,
+  handleTrainsError,
+} from '../constants/actionTypes';
+
+const { dispatch } = store;
 
 class MapController {
   constructor() {
     this._map = null;
     this._mapview = null;
+  }
+
+  updateTrains = () => {
+    dispatch(requestTrains());
+    fetchTrains()
+      .then(trains => {
+        dispatch(receiveTrains(trains));
+      })
+      .catch(e => {
+        dispatch(handleTrainsError(e));
+        console.warn(e);
+      });
   }
 
   changeLayerVisibility = (id, value) => {
@@ -19,7 +39,7 @@ class MapController {
   };
 
   handleMapViewClick = e => {
-    console.log('Map Is clicked', e);
+    //console.log('Map Is clicked', e);
   };
 
   initializeMap(domRef) {
@@ -28,7 +48,7 @@ class MapController {
       map: this._map,
       container: domRef.current,
       center: [-77.091, 38.8816],
-      zoom: 3//12
+      zoom: 12
     });
 
     this._mapview.when(
@@ -56,8 +76,8 @@ class MapController {
     const mapLayers = config.layers.map(l => {
       return layerFactory(l);
     });
-    console.log(mapLayers);
     this._map.addMany(mapLayers);
+    this.updateTrains();
   }
 
   getAllLayers() {

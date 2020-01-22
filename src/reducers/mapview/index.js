@@ -5,6 +5,7 @@ import error from 'reducers/mapview/error';
 import visibleLayers from 'reducers/mapview/visibleLayers';
 import layerInfo from 'reducers/mapview/layerInfo';
 import state from 'reducers/mapview/state';
+import trains from 'reducers/mapview/trains';
 
 const mapview = combineReducers({
   layers,
@@ -12,6 +13,7 @@ const mapview = combineReducers({
   visibleLayers,
   layerInfo,
   state,
+  trains,
 });
 
 export default mapview;
