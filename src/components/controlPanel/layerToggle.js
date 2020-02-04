@@ -1,19 +1,20 @@
 import React from 'react';
 import { mapController } from '../../controllers/mapController';
 
-const LayerToggle = ({ name, visibility }) => {
+const LayerToggle = ({ name, visibility, id }) => {
+  const layerID = `layer-${id}`;
   return (
-    <div>
+    <div className="LayerToggle">
       <input
         defaultChecked={visibility}
         onChange={e =>
-          mapController.changeLayerVisibility(name, e.target.checked)
+          mapController.changeLayerVisibility(id, e.target.checked)
         }
         type="checkbox"
-        id="layer"
-        name="layer"
+        id={layerID}
+        name={layerID}
       />
-      <label htmlFor="layer">{name}</label>
+      <label htmlFor={layerID}>{name}</label>
     </div>
   );
 };

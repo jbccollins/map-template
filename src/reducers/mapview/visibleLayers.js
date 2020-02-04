@@ -5,8 +5,8 @@ import config from 'config/config';
 const initialState = [];
 
 config.layers.forEach(l => {
-  if (l.visible) {
-    initialState.push(l.id);
+  if (l.options.visible) {
+    initialState.push(l.options.id);
   }
 });
 

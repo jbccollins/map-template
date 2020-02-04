@@ -8,5 +8,14 @@ export const layers = [
       label: 'Bike Routes',
       visible: true
     }
+  },
+  {
+    type: 'GraphicsLayer',
+    options: {
+      id: 'metro_trains',
+      label: 'Metro Trains',
+      visible: true,
+      graphics: []
+    }
   }
 ];
