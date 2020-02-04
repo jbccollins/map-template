@@ -1,6 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
+import { layers } from 'config/layers.config';
+import layerFactory from 'utils/layerFactory.util';
 
 import { mapController } from '../../controllers/mapController';
 import trainGeojsonToGraphics from '../../utils/trainGeojsonToGraphicsConverter.util';
@@ -17,19 +19,23 @@ const MapView = () => {
     mapController.initializeMap(mapviewEl);
   }, []);
   
+  const toggleTrains = () => {
+    const currentTrainsLayer = mapController._map.findLayerById("metro_trains");
+    currentTrainsLayer.graphics.forEach(g => {
+      g.visible = g.attributes.line === visibleLines.toLowerCase() || visibleLines === "All";
+    })
+  }
+
   useEffect(() => {
-    if (trains !== null) {
-      const currentTrainsLayer = mapController._map.findLayerById("metro_trains");
-      if (currentTrainsLayer !== null) {
-        mapController._map.remove(currentTrainsLayer);
-      }
-      let trainsToRender = trains;
-      if (visibleLines !== "All") {
-        trainsToRender = trains.filter(({properties: {TRACKLINE}}) => TRACKLINE === visibleLines);
-      }
-      mapController._map.add(trainGeojsonToGraphics(trainsToRender))
-    }
-  }, [trains, visibleLines])
+    toggleTrains();
+  }, [visibleLines])
+
+  useEffect(() => {
+    const currentTrainsLayer = mapController._map.findLayerById("metro_trains");
+    currentTrainsLayer.removeAll();
+    currentTrainsLayer.addMany(trainGeojsonToGraphics(trains));
+    toggleTrains();
+  }, [trains])
 
   return (
     <div className="mapview-container">

@@ -15,7 +15,7 @@ const ControlPanel = () => {
     <LayerToggle name={layer.label} id={layer.id} visibility={layer.visible} key={layer.id} />
   ));
 
-  useEffect(() => {}, [visibleLayers]);
+  //useEffect(() => {}, [visibleLayers]);
 
   return (
     <div className="control-container">

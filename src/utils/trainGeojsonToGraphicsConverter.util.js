@@ -20,18 +20,19 @@ export default geojson => {
         longitude: coordinates[1],
         latitude: coordinates[0]
       },
+      attributes: {line: properties.TRACKLINE.toLowerCase()},
       symbol: {...markerSymbol, color: properties.TRACKLINE.toLowerCase()}
     })
   })
-
-  const graphicsLayer = layerFactory({
-    type: 'GraphicsLayer',
-    options: {
-      id: 'metro_trains',
-      label: 'Metro Trains',
-      visible: true,
-      graphics
-    }
-  })
-  return graphicsLayer;
+  return graphics;
+  // const graphicsLayer = layerFactory({
+  //   type: 'GraphicsLayer',
+  //   options: {
+  //     id: 'metro_trains',
+  //     label: 'Metro Trains',
+  //     visible: true,
+  //     graphics
+  //   }
+  // })
+  //return graphicsLayer;
 };

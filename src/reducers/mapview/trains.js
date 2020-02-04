@@ -6,7 +6,7 @@ import {
 //import trainGeojsonToGraphics from '../../utils/trainGeojsonToGraphicsConverter.util';
 
 const initialTrainState = {
-  trains: null,
+  trains: [],
   fetching: false,
   error: false
 };
